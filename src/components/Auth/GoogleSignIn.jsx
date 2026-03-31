@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { loginSuccess, logout } from '../../store/authSlice';
+import { useGoogleLogin } from '@react-oauth/google';
 import { FiUser, FiLogOut } from 'react-icons/fi';
 import { FcGoogle } from 'react-icons/fc';
 import { useState } from 'react';
@@ -7,46 +8,46 @@ import './GoogleSignIn.css';
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || '';
 
+// Only rendered when GoogleOAuthProvider is present (i.e. GOOGLE_CLIENT_ID is set)
+const OAuthSignInButton = () => {
+  const dispatch = useDispatch();
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      try {
+        const profile = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+          headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+        }).then((r) => r.json());
+        dispatch(loginSuccess({
+          name: profile.name,
+          email: profile.email,
+          picture: profile.picture,
+        }));
+      } catch (error) {
+        console.error('Failed to fetch Google user profile:', error);
+      }
+    },
+    onError: () => console.error('Google login failed'),
+  });
+
+  return (
+    <button className="auth__login-btn btn-ghost" onClick={() => googleLogin()} id="google-sign-in-btn">
+      <FcGoogle size={16} />
+      <span>Sign In</span>
+    </button>
+  );
+};
+
 const GoogleSignIn = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useSelector((state) => state.auth);
   const [showMenu, setShowMenu] = useState(false);
 
-  const handleGoogleLogin = () => {
-    if (!GOOGLE_CLIENT_ID) {
-      console.warn('Google Client ID not configured. Set VITE_GOOGLE_CLIENT_ID in .env');
-      
-      dispatch(loginSuccess({
-        name: 'Demo User',
-        email: 'demo@example.com',
-        picture: '',
-      }));
-      return;
-    }
-
-    
-    
-    if (window.google?.accounts?.id) {
-      window.google.accounts.id.initialize({
-        client_id: GOOGLE_CLIENT_ID,
-        callback: handleCredentialResponse,
-      });
-      window.google.accounts.id.prompt();
-    }
-  };
-
-  const handleCredentialResponse = (response) => {
-    try {
-      
-      const payload = JSON.parse(atob(response.credential.split('.')[1]));
-      dispatch(loginSuccess({
-        name: payload.name,
-        email: payload.email,
-        picture: payload.picture,
-      }));
-    } catch (error) {
-      console.error('Failed to decode Google token:', error);
-    }
+  const handleDemoLogin = () => {
+    dispatch(loginSuccess({
+      name: 'Demo User',
+      email: 'demo@example.com',
+      picture: '',
+    }));
   };
 
   const handleLogout = () => {
@@ -86,10 +87,14 @@ const GoogleSignIn = () => {
     );
   }
 
+  if (GOOGLE_CLIENT_ID) {
+    return <OAuthSignInButton />;
+  }
+
   return (
     <button
       className="auth__login-btn btn-ghost"
-      onClick={handleGoogleLogin}
+      onClick={handleDemoLogin}
       id="google-sign-in-btn"
     >
       <FcGoogle size={16} />
