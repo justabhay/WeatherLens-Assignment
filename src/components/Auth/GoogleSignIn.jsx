@@ -5,48 +5,17 @@ import { FcGoogle } from 'react-icons/fc';
 import { useState } from 'react';
 import './GoogleSignIn.css';
 
-const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || '';
-
 const GoogleSignIn = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useSelector((state) => state.auth);
   const [showMenu, setShowMenu] = useState(false);
 
   const handleGoogleLogin = () => {
-    if (!GOOGLE_CLIENT_ID) {
-      console.warn('Google Client ID not configured. Set VITE_GOOGLE_CLIENT_ID in .env');
-      
-      dispatch(loginSuccess({
-        name: 'Demo User',
-        email: 'demo@example.com',
-        picture: '',
-      }));
-      return;
-    }
-
-    
-    
-    if (window.google?.accounts?.id) {
-      window.google.accounts.id.initialize({
-        client_id: GOOGLE_CLIENT_ID,
-        callback: handleCredentialResponse,
-      });
-      window.google.accounts.id.prompt();
-    }
-  };
-
-  const handleCredentialResponse = (response) => {
-    try {
-      
-      const payload = JSON.parse(atob(response.credential.split('.')[1]));
-      dispatch(loginSuccess({
-        name: payload.name,
-        email: payload.email,
-        picture: payload.picture,
-      }));
-    } catch (error) {
-      console.error('Failed to decode Google token:', error);
-    }
+    dispatch(loginSuccess({
+      name: 'Demo User',
+      email: 'demo@example.com',
+      picture: '',
+    }));
   };
 
   const handleLogout = () => {
