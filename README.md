@@ -110,7 +110,7 @@ http://localhost:5173/
 ## 🔐 Authentication Flow
 
 * Using Google Identity Services for Auth
-* Currently it is frontend based so the authentication is not coonected to backend.
+* Currently it is frontend based so the authentication is not connected to backend.
 * once connected to backend , auth could be verified by using JWT.
 * Demo user is displayed as login.
 * 
