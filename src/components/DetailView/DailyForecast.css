@@ -1,0 +1,128 @@
+.daily {
+  padding: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.daily:hover {
+  transform: none;
+}
+
+.daily__item {
+  display: grid;
+  grid-template-columns: 80px 40px 1fr auto 200px;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-md);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background var(--transition-fast);
+}
+
+.daily__item:last-child {
+  border-bottom: none;
+}
+
+.daily__item:hover {
+  background: var(--bg-glass);
+  border-radius: var(--radius-sm);
+}
+
+.daily__day {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.daily__icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.daily__icon {
+  width: 36px;
+  height: 36px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.daily__condition {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.daily__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.daily__pop {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: var(--font-size-xs);
+  color: var(--accent-rain);
+}
+
+
+.daily__temps {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.daily__temp-max {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  width: 35px;
+  text-align: right;
+}
+
+.daily__temp-min {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--text-muted);
+  width: 35px;
+}
+
+.daily__temp-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--bg-glass);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  min-width: 60px;
+}
+
+.daily__temp-bar-fill {
+  height: 100%;
+  width: var(--temp-range, 50%);
+  min-width: 20%;
+  background: linear-gradient(90deg, var(--accent-cold), var(--accent-warm));
+  border-radius: var(--radius-full);
+}
+
+@media (max-width: 768px) {
+  .daily__item {
+    grid-template-columns: 60px 36px 1fr 140px;
+    gap: var(--space-sm);
+  }
+
+  .daily__condition {
+    display: none;
+  }
+
+  .daily__meta {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .daily__temps {
+    min-width: 100px;
+  }
+}

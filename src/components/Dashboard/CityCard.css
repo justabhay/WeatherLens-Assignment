@@ -1,0 +1,224 @@
+.city-card {
+  padding: var(--space-lg);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  min-height: 220px;
+  position: relative;
+  overflow: hidden;
+}
+
+.city-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent-gradient);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.city-card:hover::before {
+  opacity: 1;
+}
+
+
+.city-card--loading {
+  padding: var(--space-lg);
+  min-height: 220px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.city-card__skeleton-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.city-card__skeleton-body {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) 0;
+}
+
+.city-card__skeleton-footer {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: auto;
+}
+
+
+.city-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.city-card__location {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+}
+
+.city-card__city-name {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.city-card__country {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  font-weight: 500;
+  background: var(--bg-glass);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.city-card__fav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+}
+
+.city-card__fav-btn:hover {
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.city-card__fav-btn--active {
+  color: var(--accent-warm);
+}
+
+.city-card__fav-btn--active svg {
+  fill: var(--accent-warm);
+}
+
+
+.city-card__body {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.city-card__icon-wrap {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+}
+
+.city-card__icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.city-card__temp-wrap {
+  display: flex;
+  align-items: flex-start;
+}
+
+.city-card__temp {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  background: linear-gradient(180deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.city-card__unit {
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+
+.city-card__condition {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.city-card__condition-text {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.city-card__feels-like {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
+
+.city-card__stats {
+  display: flex;
+  gap: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--border-subtle);
+  margin-top: auto;
+}
+
+.city-card__stat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
+.city-card__stat svg {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+
+.city-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.city-card__updated {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+
+.city-card__error-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  flex: 1;
+  text-align: center;
+  padding: var(--space-md) 0;
+}
+
+.city-card__error-text {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  line-height: 1.5;
+  max-width: 220px;
+}

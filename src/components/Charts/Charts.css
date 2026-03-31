@@ -1,0 +1,50 @@
+
+
+.chart-container {
+  width: 100%;
+  user-select: none;
+}
+
+
+.chart-tooltip {
+  background: var(--bg-tooltip);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(12px);
+}
+
+.chart-tooltip__label {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.chart-tooltip__value {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.chart-empty {
+  text-align: center;
+  padding: var(--space-2xl);
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+}
+
+
+.recharts-legend-item-text {
+  color: #94a3b8 !important;
+}
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(255, 255, 255, 0.04);
+}
+
+.recharts-active-dot circle {
+  filter: drop-shadow(0 0 6px currentColor);
+}

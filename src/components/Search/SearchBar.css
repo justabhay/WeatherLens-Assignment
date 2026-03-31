@@ -1,0 +1,112 @@
+.search {
+  position: relative;
+  width: 100%;
+}
+
+.search__input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-base);
+}
+
+.search__input-wrapper:focus-within,
+.search__input-wrapper--active {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--border-active);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.search__icon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.search__input {
+  flex: 1;
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  min-width: 0;
+}
+
+.search__input::placeholder {
+  color: var(--text-muted);
+}
+
+.search__clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+}
+
+.search__clear:hover {
+  background: var(--bg-glass-hover);
+  color: var(--text-primary);
+}
+
+
+.search__dropdown {
+  position: absolute;
+  top: calc(100% + var(--space-sm));
+  left: 0;
+  right: 0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  z-index: var(--z-dropdown);
+}
+
+.search__result {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  transition: background var(--transition-fast);
+}
+
+.search__result:hover,
+.search__result--selected {
+  background: var(--bg-glass-hover);
+}
+
+.search__result-icon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.search__result-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.search__result-name {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.search__result-meta {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
+.search__result-fav {
+  color: var(--accent-warm);
+  fill: var(--accent-warm);
+  flex-shrink: 0;
+}
